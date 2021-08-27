@@ -1,0 +1,37 @@
+version: '3'
+services:
+    client:
+        build:
+            context: ./client
+        volumes: 
+            - ./client:/usr/share/nginx/html
+        ports:
+            - 81:80
+    api1:
+        build:
+            context: ./api
+            dockerfile: Dockerfile.dev
+        environment: 
+          - PORT=3000
+          - APP_ID=1
+        volumes: 
+            - /myapp/node_modules
+            - ./api/:/myapp
+    api2:
+        build:
+            context: ./api
+            dockerfile: Dockerfile.dev
+        environment: 
+          - PORT=3000
+          - APP_ID=2
+        volumes: 
+            - /myapp/node_modules
+            - ./api/:/myapp
+    proxy:
+        restart: always
+        build: 
+            context: ./proxy
+        ports: 
+            - 80:80
+   
+

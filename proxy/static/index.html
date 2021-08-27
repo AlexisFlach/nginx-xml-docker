@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Users Nginx</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+  <h1>Hello from appen</h1>
+  <div id="users">
+
+  </div>
+  <script>
+    var xhttp = new XMLHttpRequest();
+
+    xhttp.onreadystatechange = function () {
+      if (this.readyState == 4 && this.status == 200) {
+        let res = JSON.parse(xhttp.responseText);
+        let users = res.users;
+
+
+        let output = '';
+
+        for (let i = 0; i < users.length; i++) {
+          output += '<li>' + users[i].name + '</i>';
+        }
+        document.getElementById('users').innerHTML = output;
+      }
+    }
+
+    xhttp.open("GET", 'http://localhost:80/api', true)
+
+    xhttp.send();
+
+
+  </script>
+</body>
+
+</html>
