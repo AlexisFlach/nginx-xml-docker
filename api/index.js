@@ -8,9 +8,6 @@ app.get('/api', (req, res) => {
   res.send(db)
 })
 
-
-
-
 app.listen(PORT, () => {
   console.log(`Server listens on ${PORT}`);
 })

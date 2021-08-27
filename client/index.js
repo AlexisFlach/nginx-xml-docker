@@ -5,7 +5,6 @@ xhttp.onreadystatechange = function () {
     let res = JSON.parse(xhttp.responseText);
     let users = res.users;
 
-
     let output = '';
 
     for (let i = 0; i < users.length; i++) {
